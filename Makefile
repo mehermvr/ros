@@ -21,7 +21,8 @@
 # SOFTWARE.
 .PHONY:build clean dev docker run
 CONTAINER_NAME?=noetic
-ROS_MASTER_URI := 131.220.233.249
+ROS_MASTER_IP := 131.220.233.249
+ROS_MASTER_URI := http://$(ROS_MASTER_IP):11311/
 ROS_IP := $(shell hostname -I | awk '{ print $$1}')
 
 export CONTAINER_NAME
