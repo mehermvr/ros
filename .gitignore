@@ -2,6 +2,7 @@ src/
 devel/
 build/
 logs/
+maps/
 compile_commands.json
 .catkin_tools/
 .clangd/
