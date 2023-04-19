@@ -24,8 +24,15 @@ LABEL maintainer="Ignacio Vizzo <ignaciovizzo@gmail.com>"
 
 # Add any additional dependencies here:
 RUN apt-get update && apt-get install --no-install-recommends -y \
+    iputils-ping \
     rsync \
     && rm -rf /var/lib/apt/lists/*
+
+
+ARG ROS_IP
+ARG ROS_MASTER_URI
+ENV ROS_IP=$ROS_IP
+ENV ROS_MASTER_URI=$ROS_MASTER_URI
 
 # $USER_NAME Inherited from .base/Dockerfile
 WORKDIR /home/$USER_NAME/ros_ws

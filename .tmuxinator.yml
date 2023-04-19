@@ -24,17 +24,9 @@ root: ~/ros_ws/
 startup_window: editor
 tmux_command: tmux -2
 windows:
-  - build:
+  - seethings:
       panes:
         - catkin build
-  - ros:
-      layout: even-horizontal
-      panes:
-        - roscore
-        - echo "\nAvailable local packages:" && rospack list | grep -vwE "/opt"
-  - editor:
-      panes:
-        - nvim -c ":CocCommand explorer --preset floating src/"
   - monitor:
       panes:
         - htop
