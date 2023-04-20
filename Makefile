@@ -45,3 +45,6 @@ clean:
 
 run:
 	@docker-compose run -e "TERM=xterm-256color" --rm ros
+
+rviz:
+	rviz -d config/default.rviz
