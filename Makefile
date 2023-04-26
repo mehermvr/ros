@@ -24,6 +24,8 @@ CONTAINER_NAME?=noetic
 ROS_MASTER_IP := 131.220.233.249
 ROS_MASTER_URI := http://$(ROS_MASTER_IP):11311/
 ROS_IP := $(shell hostname -I | awk '{ print $$1}')
+export ROS_IP
+export ROS_MASTER_URI
 
 export CONTAINER_NAME
 default:build
@@ -46,5 +48,6 @@ clean:
 run:
 	@docker-compose run -e "TERM=xterm-256color" --rm ros
 
+.PHONY: rviz
 rviz:
-	rviz -d config/default.rviz
+	docker-compose run --rm ros rviz -d config/default.rviz
