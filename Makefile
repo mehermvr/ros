@@ -28,26 +28,15 @@ export ROS_IP
 export ROS_MASTER_URI
 
 export CONTAINER_NAME
-default:build
-	@docker-compose run --rm ros tmuxinator
+default:
+	@docker-compose run --rm ros rviz -d config/default.rviz
 
 dev:
 	@docker-compose run --rm ros tmuxinator
 
-build:
-	@docker-compose run --rm ros catkin init 
-	@docker-compose run --rm ros catkin build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-	@docker-compose run -w /home/user/ros_ws/build/ --rm ros merge_compile_commands
-
 docker: 
 	docker build --build-arg ROS_IP=$(ROS_IP) --build-arg ROS_MASTER_URI=$(ROS_MASTER_URI) -t ros_in_docker/noetic:$(CONTAINER_NAME) .
-
-clean:
-	@docker-compose run --rm ros catkin clean
 
 run:
 	@docker-compose run -e "TERM=xterm-256color" --rm ros
 
-.PHONY: rviz
-rviz:
-	docker-compose run --rm ros rviz -d config/default.rviz

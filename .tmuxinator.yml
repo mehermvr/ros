@@ -24,9 +24,6 @@ root: ~/ros_ws/
 startup_window: editor
 tmux_command: tmux -2
 windows:
-  - seethings:
+  - ros-ip:
       panes:
-        - catkin build
-  - monitor:
-      panes:
-        - htop
+        - echo $ROS_IP && echo $ROS_MASTER_URI
